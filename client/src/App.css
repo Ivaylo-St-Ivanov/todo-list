@@ -1,0 +1,45 @@
+@import "https://use.fontawesome.com/releases/v5.10.2/css/all.css";
+
+body {
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    padding: 100px 200px;
+}
+
+.container {
+    border: 2px dashed blue;
+    border-radius: 12px;
+    height: 100%;
+    box-shadow: 0px 0px 60px;
+}
+
+form {
+    margin: 50px 300px 20px 300px;
+}
+
+.input-field {
+    margin-right: 10px;
+    width: 350px;
+    box-shadow: 0px 0px 8px #2f0ea3;
+}
+
+.btn {
+    border-left: 2px solid gray;
+    border-top: 2px solid gray;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-radius: 6px;
+    background-color: white;
+    padding: 2px 8px;
+    box-shadow: 2px 2px 3px gray;
+}
+
+.btn:hover {
+    cursor: pointer;
+    box-shadow: unset;
+}
+
+hr {
+    width: 70%;
+}

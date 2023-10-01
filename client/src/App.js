@@ -1,15 +1,17 @@
 import './App.css';
 
+import { Container, Form, InputField, Button, Line } from './styled';
+
 function App() {
     return (
-        <div className="container" >
-            <form>
-                <input className="input-field" type="text" name="text" placeholder=" ....." />
-                <input className="btn" type="submit" name="btn" value="Add new task" />
-            </form>
+        <Container>
+            <Form>
+                <InputField placeholder=" ....." />
+                <Button type="submit" name="btn" value="Add new task" />
+            </Form>
 
-            <hr />
-        </div>
+            <Line />
+        </Container>
     );
 }
 

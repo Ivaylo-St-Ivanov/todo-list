@@ -4,9 +4,6 @@ body {
   margin: 0;
   background: rgb(0, 255, 255);
   background: radial-gradient(circle, rgba(0, 255, 255, 1) 38%, rgba(70, 252, 181, 1) 98%);
-  display: flex;
-  justify-content: center;
-  padding: 6.25rem 12.5rem;
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

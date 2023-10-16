@@ -1,10 +1,18 @@
 import { styled } from 'styled-components';
 
-export const Container = styled.div`
-    border: 2px dashed blue;
+export const TasksContainer = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7rem 7rem 6rem 7rem;
+`;
+
+export const Box = styled.div`
     border-radius: 12px;
     height: 100%;
-    box-shadow: 0px 0px 60px;
+    box-shadow: 0px 0px 26px blueviolet;
 `;
 
 export const Form = styled.form`

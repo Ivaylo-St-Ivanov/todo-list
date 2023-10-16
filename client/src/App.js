@@ -1,17 +1,16 @@
-import './App.css';
-
-import { Container, Form, InputField, Button, Line } from './styled';
+import Container from './components/Container/Container';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
 
 function App() {
     return (
-        <Container>
-            <Form>
-                <InputField placeholder=" ....." />
-                <Button type="submit" name="btn" value="Add new task" />
-            </Form>
+        <>
+            <Header />
 
-            <Line />
-        </Container>
+            <Container />
+
+            <Footer />
+        </>
     );
 }
 

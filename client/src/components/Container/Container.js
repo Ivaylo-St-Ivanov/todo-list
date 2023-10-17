@@ -4,11 +4,12 @@ import * as taskService from '../../services/taskService';
 
 import Tasks from './Tasks/Tasks';
 
-import { TasksContainer, Box, Form, InputField, Button, Line } from './styled';
+import { TasksContainer, Box, Form, InputField, Button, Line, EditTaskContainer, EditModal, ClouseEditModalBtn } from './styled';
 
 const Container = () => {
     const [tasks, setTasks] = useState([]);
     const [taskInput, setTaskInput] = useState('');
+    const [isEditClick, setIsEditClick] = useState(false);
 
     useEffect(() => {
         taskService.getAllTasks()
@@ -27,18 +28,40 @@ const Container = () => {
         setTaskInput(e.target.value);
     };
 
-    return (
-        <TasksContainer>
-            <Box>
-                <Form onSubmit={onSubmitHandler}>
-                    <InputField value={taskInput} onChange={onChangeHandler} placeholder=" ....." />
-                    <Button type="submit" name="btn" value="Add" />
-                </Form>
-                <Line />
+    const onEditClick = (value) => {
+        setIsEditClick(value);
+    };
 
-                <Tasks tasks={tasks}/>
-            </Box>
-        </TasksContainer>
+    const onClouseEditModal = () => {
+        setIsEditClick(false);
+    };
+
+    return (
+        <>
+            <TasksContainer>
+                <Box>
+                    <Form onSubmit={onSubmitHandler}>
+                        <InputField value={taskInput} onChange={onChangeHandler} placeholder=" ....." />
+                        <Button type="submit" name="btn" value="Add" />
+                    </Form>
+                    <Line />
+
+                    <Tasks tasks={tasks} onEditClick={onEditClick} />
+                </Box>
+            </TasksContainer>
+
+            {isEditClick && (
+                <EditTaskContainer>
+                    <EditModal>
+                        <ClouseEditModalBtn onClick={onClouseEditModal} >X</ClouseEditModalBtn>
+                        <Form onSubmit={onSubmitHandler}>
+                            <InputField value={taskInput} onChange={onChangeHandler} placeholder=" ....." />
+                            <Button type="submit" name="btn" value="Add" />
+                        </Form>
+                    </EditModal>
+                </EditTaskContainer>
+            )}
+        </>
     );
 };
 

@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Checkbox, Delete, Edit, TaskName, TaskRow, TasksBox } from './styled';
 
 const Tasks = ({
-    tasks
+    tasks,
+    onEditClick
 }) => {
     const [isComplete, setIsComplete] = useState(false);
 
@@ -25,7 +26,7 @@ const Tasks = ({
 
                     <div>
                         <Checkbox onClick={onClickCheckBox} type="checkbox" name="completed" id="completed" />
-                        <Edit className="fas fa-edit" />
+                        <Edit onClick={() => {onEditClick(true);}} className="fas fa-edit" />
                         <Delete className="fas fa-trash-alt" style={{ color: '#ff0000' }} />
                     </div>
                 </TaskRow>

@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <HeaderElement>
             <h3>
-                <i class="fas fa-clipboard-list" />
+                <i className="fas fa-clipboard-list" />
                 &nbsp; Todo list
             </h3>
         </HeaderElement>

@@ -13,6 +13,7 @@ export const Box = styled.div`
     border-radius: 12px;
     height: 100%;
     box-shadow: 0px 0px 26px blueviolet;
+    overflow: hidden;
 `;
 
 export const Form = styled.form`

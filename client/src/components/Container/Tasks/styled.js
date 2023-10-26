@@ -1,5 +1,12 @@
 import { styled } from 'styled-components';
 
+export const NoTasksMessage = styled.p`
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+`;
+
 export const TasksBox = styled.div`
     margin: 3rem 2rem 2rem 2rem;
     height: 100%;

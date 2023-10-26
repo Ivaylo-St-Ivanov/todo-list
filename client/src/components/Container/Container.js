@@ -26,10 +26,10 @@ const Container = () => {
 
         const res = await taskService.addTask({ taskName });
         
-        const taskId = res.objectId;
+        const objectId = res.objectId;
         const isCompleted = res.isCompleted;
 
-        setTasks(state => [...state, { taskId, taskName, isCompleted }]);
+        setTasks(state => [...state, { objectId, taskName, isCompleted }]);
     };
 
     const onEditClick = async (taskId) => {
@@ -43,6 +43,12 @@ const Container = () => {
         setIsEditClick(false);
     };
 
+    const onDeleteClick = async (taskId) => {
+        await taskService.removeTask(taskId);
+        
+        setTasks(state => state.filter(t => t.objectId !== taskId));
+    };
+
     return (
         <>
             <TasksContainer>
@@ -51,7 +57,7 @@ const Container = () => {
 
                     <Line />
 
-                    <Tasks tasks={tasks} onEditClick={onEditClick} />
+                    <Tasks tasks={tasks} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />
                 </Box>
             </TasksContainer>
 

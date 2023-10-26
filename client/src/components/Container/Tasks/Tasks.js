@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import { Checkbox, Delete, Edit, TaskName, TaskRow, TasksBox } from './styled';
+import { Checkbox, Delete, Edit, NoTasksMessage, TaskName, TaskRow, TasksBox } from './styled';
 
 const Tasks = ({
     tasks,
-    onEditClick
+    onEditClick,
+    onDeleteClick
 }) => {
     const [isComplete, setIsComplete] = useState(false);
 
@@ -14,6 +15,8 @@ const Tasks = ({
 
     return (
         <TasksBox>
+            {tasks.length === 0 && <NoTasksMessage>No tasks yet!</NoTasksMessage>}
+
             {tasks.map(t => (
                 <TaskRow key={t.objectId}>
                     {!isComplete && (
@@ -26,8 +29,8 @@ const Tasks = ({
 
                     <div>
                         <Checkbox onClick={onClickCheckBox} type="checkbox" name="completed" id="completed" />
-                        <Edit onClick={() => {onEditClick(t.objectId);}} className="fas fa-edit" />
-                        <Delete className="fas fa-trash-alt" style={{ color: '#ff0000' }} />
+                        <Edit onClick={() => { onEditClick(t.objectId); }} className="fas fa-edit" />
+                        <Delete onClick={() => { onDeleteClick(t.objectId); }} className="fas fa-trash-alt" style={{ color: '#ff0000' }} />
                     </div>
                 </TaskRow>
             ))}

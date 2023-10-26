@@ -17,16 +17,16 @@ const Tasks = ({
             {tasks.map(t => (
                 <TaskRow key={t.objectId}>
                     {!isComplete && (
-                        <TaskName>{t.task_name}</TaskName>
+                        <TaskName>{t.taskName}</TaskName>
                     )}
 
                     {isComplete && (
-                        <TaskName><s>{t.task_name}</s></TaskName>
+                        <TaskName><s>{t.taskName}</s></TaskName>
                     )}
 
                     <div>
                         <Checkbox onClick={onClickCheckBox} type="checkbox" name="completed" id="completed" />
-                        <Edit onClick={() => {onEditClick(true);}} className="fas fa-edit" />
+                        <Edit onClick={() => {onEditClick(t.objectId);}} className="fas fa-edit" />
                         <Delete className="fas fa-trash-alt" style={{ color: '#ff0000' }} />
                     </div>
                 </TaskRow>

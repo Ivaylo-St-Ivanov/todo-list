@@ -3,33 +3,40 @@ import { useState, useEffect } from 'react';
 import * as taskService from '../../services/taskService';
 
 import Tasks from './Tasks/Tasks';
+import Form from './Form/Form';
 
-import { TasksContainer, Box, Form, InputField, Button, Line, EditTaskContainer, EditModal, ClouseEditModalBtn } from './styled';
+import { TasksContainer, Box, Line, EditTaskContainer, EditModal, ClouseEditModalBtn } from './styled';
 
 const Container = () => {
     const [tasks, setTasks] = useState([]);
-    const [taskInput, setTaskInput] = useState('');
     const [isEditClick, setIsEditClick] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         taskService.getAllTasks()
             .then(data => {
-                setTasks(data);
+                setTasks(data.results);
             });
     }, []);
 
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
+    const onSubmitNewTask = async (taskName) => {
+        if (!taskName) {
+            return setError(true);
+        }
 
-        setTaskInput('');
+        const res = await taskService.addTask({ taskName });
+        
+        const taskId = res.objectId;
+        const isCompleted = res.isCompleted;
+
+        setTasks(state => [...state, { taskId, taskName, isCompleted }]);
     };
 
-    const onChangeHandler = (e) => {
-        setTaskInput(e.target.value);
-    };
+    const onEditClick = async (taskId) => {
+        setIsEditClick(true);
 
-    const onEditClick = (value) => {
-        setIsEditClick(value);
+        // const selectedTask = tasks.find(t => t.objectId === taskId);
+        // setTaskInput(selectedTask);
     };
 
     const onClouseEditModal = () => {
@@ -40,10 +47,8 @@ const Container = () => {
         <>
             <TasksContainer>
                 <Box>
-                    <Form onSubmit={onSubmitHandler}>
-                        <InputField value={taskInput} onChange={onChangeHandler} placeholder=" ....." />
-                        <Button type="submit" name="btn" value="Add" />
-                    </Form>
+                    <Form onSubmitNewTask={onSubmitNewTask} error={error} />
+
                     <Line />
 
                     <Tasks tasks={tasks} onEditClick={onEditClick} />
@@ -54,10 +59,10 @@ const Container = () => {
                 <EditTaskContainer>
                     <EditModal>
                         <ClouseEditModalBtn onClick={onClouseEditModal} >X</ClouseEditModalBtn>
-                        <Form onSubmit={onSubmitHandler}>
-                            <InputField value={taskInput} onChange={onChangeHandler} placeholder=" ....." />
+                        {/* <Form onSubmit={onSubmitNewTask}>
+                            <InputField value={taskName.taskName} onChange={onChangeHandler} name="taskName" placeholder=" ....." />
                             <Button type="submit" name="btn" value="Add" />
-                        </Form>
+                        </Form> */}
                     </EditModal>
                 </EditTaskContainer>
             )}
